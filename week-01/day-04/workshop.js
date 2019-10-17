@@ -12,6 +12,17 @@
      -  a pink with black text: "Awesome"
      -  a yellow with green text: "Superb!"
 */
+class PostIt {
+  constructor(backgroundColor, text, textColor) {
+    this.backgroundColor = backgroundColor;
+    this.text = text;
+    this.textColor;
+  }
+}
+
+const orange = new PostIt('orange', 'Idea 1', 'blue');
+const pink = new PostIt('pink', 'Awesome', 'black');
+const yellow = new PostIt('yellow', 'Superb', 'green');
 
 
 /*
@@ -29,7 +40,18 @@
   - "One Engineer Is Trying to Get IBM to Reckon With Trump" titled by William Turton at "2017.03.28."
     - Daniel Hanley, a cybersecurity engineer at IBM, doesn’t want to be the center of attention. When I asked to take his picture outside one of IBM’s New York City offices, he told me that he wasn’t really into the whole organizer profile thing.
 */
+class BlogPost {
+  constructor(authorName, title, text, publicationDate) {
+    this.authorName = authorName;
+    this.title = title;
+    this.text = text;
+    this.publicationDate = publicationDate;
+  }
+}
 
+new BlogPost('John Doe', 'Lorem Ipsum', 'Lorem ipsum dolor sit amet.', '2000.05.04.');
+new BlogPost('Tim Urban', 'Wait but why', 'A popular long-form, stick-figure-illustrated blog about almost everything.', '2010.10.10.');
+new BlogPost('William Turton', 'One Engineer Is Trying to Get IBM to Reckon With Trump', 'Daniel Hanley, a cybersecurity engineer at IBM, doesn’t want to be the center of attention. When I asked to take his picture outside one of IBM’s New York City offices, he told me that he wasn’t really into the whole organizer profile thing.', '2017.03.28.');
 
 /*
 # Animal
@@ -41,7 +63,26 @@
      -  Every animal can `drink()` which decreases their thirst by one
      -  Every animal can `play()` which increases both by one
 */
+class Animal {
 
+  constructor() {
+    this.hunger = 50;
+    this.thirst = 50;
+  }
+
+  eat() {
+    this.hunger--;
+  }
+
+  drink() {
+    this.thirst--;
+  }
+
+  play() {
+    this.hunger++;
+    this.thirst++;
+  }
+}
 
 /*
 # Sharpie
@@ -53,7 +94,19 @@
      -  We can `use()` the sharpie objects
      -  which decreases inkAmount
 */
+class Sharpie {
+  constructor(color, width, inkAmount = 100) {
+    this.color = color;
+    this.width = width;
+    this.inkAmount = inkAmount;
+  }
 
+  use() {
+    inkAmount--;
+  }
+}
+
+//console.log(new Sharpie('blue', 1).inkAmount);
 
 /*
 # Counter
@@ -66,7 +119,24 @@
      -  and we can `get()` the current value as string
      -  also we can `reset()` the value to the initial value
 */
+class Counter {
+  constructor(value = 0) {
+    this.value = value;
+    this.initValue = value;
+  }
 
+  add(value = 1) {
+    this.value += value;
+  }
+
+  get() {
+    return this.value.toString();
+  }
+
+  reset() {
+    this.value = this.initValue;
+  }
+}
 
 /*
 Pokemon
@@ -82,19 +152,20 @@ const pokemonOfAsh = initializePokemon();
 // A wild pokemon appeared!
 
 const wildPokemon = new Pokemon('Oddish', 'leaf', 'water');
-
+let pokemonChosen;
+pokemonOfAsh.forEach((pokemon) => pokemon.effectiveAgainst === 'leaf' && pokemon.type != 'water' ? pokemonChosen = pokemon : null);
 // Which pokemon should Ash use?
 
-console.log('I choose you, ');
+console.log('I choose you, ' + pokemonChosen.name);
 
 function initializePokemon() {
-    return [
-        new Pokemon('Balbasaur', 'leaf', 'water'),
-        new Pokemon('Pikatchu', 'electric', 'water'),
-        new Pokemon('Charizard', 'fire', 'leaf'),
-        new Pokemon('Balbasaur', 'water', 'fire'),
-        new Pokemon('Kingler', 'water', 'fire')
-    ];
+  return [
+    new Pokemon('Balbasaur', 'leaf', 'water'),
+    new Pokemon('Pikatchu', 'electric', 'water'),
+    new Pokemon('Charizard', 'fire', 'leaf'),
+    new Pokemon('Balbasaur', 'water', 'fire'),
+    new Pokemon('Kingler', 'water', 'fire')
+  ];
 }
 
 
@@ -121,6 +192,15 @@ const fleet = new Fleet();
 // 4. [x] Eat lunch
 
 // Hint: You have to create a `print()` method as well
+fleet.add(new Thing('Get milk'));
+fleet.add(new Thing('Remove the obstacles'));
+const standUp = new Thing('Stand up');
+standUp.complete();
+fleet.add(standUp);
+const eatLunch = new Thing('Eat lunch')
+eatLunch.complete();
+fleet.add(eatLunch);
+fleet.print();
 
 
 /*
@@ -129,37 +209,37 @@ DiceSet
 
 class DiceSet {
 
-    constructor() {
-        this.numOfDices = 6;
-    }
+  constructor() {
+    this.numOfDices = 6;
+  }
 
-    roll() {
-        this.dice = [];
-        for (let i = 0; i < this.numOfDices; i++) {
-            this.dice.push(Math.floor(Math.random() * 6 + 1));
-        }
+  roll() {
+    this.dice = [];
+    for (let i = 0; i < this.numOfDices; i++) {
+      this.dice.push(Math.floor(Math.random() * 6 + 1));
+    }
+    return this.dice;
+  }
+
+  reroll(index) {
+    if (index === undefined) {
+      for (let i = 0; i < this.numOfDices; i++) {
+        this.dice[i] = Math.floor(Math.random() * 6 + 1);
+      }
+    } else {
+      this.dice[index] = Math.floor(Math.random() * 6 + 1);
+    }
+  }
+
+  getCurrent(index) {
+    if (index === undefined) {
+      for (let i = 0; i < this.numOfDices; i++) {
         return this.dice;
+      }
+    } else {
+      return this.dice[index];
     }
-
-    reroll(index) {
-        if (index === undefined) {
-            for (let i = 0; i < this.numOfDices; i++) {
-                this.dice[i] = Math.floor(Math.random() * 6 + 1);
-            }
-        } else {
-            this.dice[index] = Math.floor(Math.random() * 6 + 1);
-        }
-    }
-
-    getCurrent(index) {
-        if (index === undefined) {
-            for (let i = 0; i < this.numOfDices; i++) {
-                return this.dice;
-            }
-        } else {
-            return this.dice[index];
-        }
-    }
+  }
 }
 
 // You have a `DiceSet` class which has a list for 6 dice
@@ -188,6 +268,13 @@ console.log('------------------');
 diceSet.reroll(4);
 console.log(diceSet.getCurrent());
 
+for (let i = 0; i < diceSet.numOfDices; i++) {
+  while (diceSet.getCurrent(i) != 6) {
+    diceSet.reroll(i);
+  }
+}
+console.log(diceSet.getCurrent());
+
 
 /*
 Dominoes, Domino 💪
@@ -195,14 +282,14 @@ Dominoes, Domino 💪
 const Domino = require('./domino');
 
 function initializeDominoes() {
-    const dominoes = [];
-    dominoes.push(new Domino(5, 2));
-    dominoes.push(new Domino(4, 6));
-    dominoes.push(new Domino(1, 5));
-    dominoes.push(new Domino(6, 7));
-    dominoes.push(new Domino(2, 4));
-    dominoes.push(new Domino(7, 1));
-    return dominoes;
+  const dominoes = [];
+  dominoes.push(new Domino(5, 2));
+  dominoes.push(new Domino(4, 6));
+  dominoes.push(new Domino(1, 5));
+  dominoes.push(new Domino(6, 7));
+  dominoes.push(new Domino(2, 4));
+  dominoes.push(new Domino(7, 1));
+  return dominoes;
 }
 
 const dominoes = initializeDominoes();
@@ -225,6 +312,34 @@ console.log(dominoes.toString());
 - Instantiate a `Student` and `Teacher` object
 - Call the student's `question()` method and the teacher's `teach()` method
 */
+class Student {
+
+  learn() {
+    console.log(this + 'is learning something new');
+  }
+
+  question(teacher) {
+    teacher.answer();
+  }
+
+}
+
+class Teacher {
+
+  answer() {
+    console.log(this + 'is answering a question')
+  }
+
+  teach(student) {
+    student.learn();
+  }
+
+}
+
+const student = new Student();
+const teacher = new Teacher();
+student.question(teacher);
+teacher.teach(student);
 
 
 /*
@@ -241,6 +356,36 @@ console.log(dominoes.toString());
           -  initialize gasAmount -> 0
           -  initialize capacity -> 100
 */
+class Station {
+
+  constructor(gasAmount) {
+    this.gasAmount = gasAmount;
+  }
+
+  refill(car) {
+    this.gasAmount -= car.capacity - car.gasAmount;
+    car.gasAmount = car.capacity;
+    if(this.gasAmount<0){
+      car.gasAmount += this.gasAmount
+      this.gasAmount = 0;
+    }
+  }
+
+}
+
+class Car {
+
+  constructor() {
+    this.gasAmount = 0;
+    this.capacity = 100;
+  }
+}
+
+const station = new Station(20);
+console.log(station.gasAmount);
+const car = new Car();
+station.refill(car);
+console.log(station.gasAmount);
 
 /*
 # Sharpie Set
@@ -251,7 +396,22 @@ console.log(dominoes.toString());
      -  `countUsable()` -> sharpie is usable if it has ink in it
      -  `removeTrash()` -> removes all unusable sharpies
 */
+class SharpieSet{
 
+  constructor(sharpies){
+    this.sharpies = sharpies;
+  }
+
+  countUsable(){
+    let count = 0;
+    this.sharpies.forEach(()=>Sharpie.inkAmount>0 ? count++ : null);
+    return count;
+  }
+
+  removeTrash(){
+    this.sharpies = this.sharpies.filter((value) => value.inkAmount>0);
+  }
+}
 
 /*
 #### Farm
@@ -262,7 +422,36 @@ console.log(dominoes.toString());
   - breed() -> creates a new animal if there's place for it
   - slaughter() -> removes the least hungry animal
 */
+class Farm{
+  constructor(animals, slots){
+    this.animals = animals;
+    this.slots = slots
+  }
 
+  breed(){
+    if(this.slots>0){
+      this.animals.push(new Animal());
+      this.slots--;
+    }
+  }
+
+  slaughter(){
+    if(this.animals.length==0){
+      return;
+    }
+
+    let leastHungryAnimal = this.animals[0];
+    let leastHungryAnimalIndex = 0;
+    this.animals.forEach((animal, index) => {
+      if(leastHungryAnimal.hunger>animal.hunger){
+        leastHungryAnimal = animal;
+        leastHungryAnimalIndex = index;
+      }
+    })
+    this.animals.splice(leastHungryAnimalIndex, 1);
+  }
+
+}
 
 /*
 # Blog
@@ -274,6 +463,19 @@ console.log(dominoes.toString());
      -  delete(int) one item at given index
      -  update(int, BlogPost) one item at the given index and update it with another BlogPost
 */
+class Blog{
+  constructor(blogPosts){
+    this.blogPosts = blogPosts;
+  }
+
+  delete(int){
+    this.blogPosts.splice(int, 1);
+  }
+
+  update(int, blogPost){
+    this.blogPosts.splice(int, 1, blogPost);
+  }
+}
 
 
 /*
@@ -335,6 +537,149 @@ Add a parrot.
  -  Create 2 armadas, fill them with ships
  -  Have a war!
 */
+class Pirate{
+
+  constructor(){
+    this.consumedRum = 0;
+    this.isDied = false;
+  }
+
+  drinkSomeRum(){
+    this.consumedRum++;
+  }
+
+  howsItGoingMate(){
+    if(this.consumedRum<=4){
+      console.log("Pour me anudder!");
+    }else{
+      console.log("Arghh, I'ma Pirate. How d'ya d'ink its goin?");
+    }
+  }
+
+  die(){
+    this.isDied = true;
+  }
+
+  brawl(x){
+    const result = Math.floor(Math.random() * 3 + 1);
+    switch(result){
+      case 1:
+        this.die();
+        break;
+      case 2:
+        x.die();
+        break;
+      case 3:
+        this.die();
+        x.die();
+    }
+  }
+
+}
+
+class Ship{
+
+  constructor(){
+    this.pirates = [];
+    this.capitain;
+  }
+
+  fillShip(){
+    const piratesNum = Math.floor(Math.random() * 100 + 5);
+    for(let i=0; i<piratesNum; i++){
+      this.pirates.push(new Pirate());
+    }
+    this.capitain = new Pirate();
+  }
+
+  getScore(){
+    let score = 0;
+    this.pirates.forEach((pirate) => pirate.isDied ? null:score++);
+    score-=this.capitain.consumedRum;
+    return score;
+  }
+
+  loss(){
+    let numDeath = Math.floor(Math.random() * 100);
+    for(let i=0; i<this.pirates.length && numDeath>0; i++){
+      if(!this.pirates[i].isDied){
+        this.pirates[i].die();
+        numDeath--;
+      }
+    }
+  }
+
+  win(){
+    this.capitain.consumedRum += Math.floor(Math.random() * 10);
+  }
+
+  battle(otherShip){
+    console.log(`${this.getScore()} > ${otherShip.getScore()}`);
+    if(this.getScore() > otherShip.getScore()){
+      this.win();
+      otherShip.loss();
+      return true;
+    }else{
+      this.loss();
+      otherShip.win();
+      return false;
+    }
+  }
+}
+
+class BattleApp{
+  constructor(){
+    const ship1 = new Ship();
+    ship1.fillShip();
+    const ship2 = new Ship();
+    ship2.fillShip();
+    ship1.battle(ship2);
+  }
+}
+
+class Armada{
+  fillArmada(){
+    this.ships = [];
+    const shipsNum = Math.floor(Math.random() * 10 + 4);
+    for(let i=0; i<shipsNum; i++){
+      const ship = new Ship();
+      ship.fillShip();
+      this.ships.push(ship);
+    }
+  }
+
+  war(otherArmada){
+    while(true){
+      if(this.ships.length===0){
+        return false;
+      }
+      if(otherArmada.ships.length===0){
+        return true;
+      }
+
+      if(this.ships[0].battle(otherArmada.ships[0])){
+        otherArmada.ships.shift();
+        console.log("armada1 win");
+      }else{
+        this.ships.shift();
+        console.log("armada2 win");
+      }
+    }
+  }
+
+}
+
+class WarApp{
+  constructor(){
+    const armada1 = new Armada();
+    armada1.fillArmada();
+    const armada2 = new Armada();
+    armada2.fillArmada();
+    armada1.war(armada2);
+  }
+}
+
+const warApp = new WarApp();
 
 
 /*
@@ -348,3 +693,18 @@ Add a parrot.
     - sex
   - you can use just variables, or lists and/or maps
 */
+
+class Tree{
+  constructor(type, leafColor, age, sex){
+    this.type = type;
+    this.leafColor = leafColor;
+    this.age = age;
+    this.sex = sex;
+  }
+}
+
+const tree1 = new Tree('type1', 'color1', 10, 'sex1');
+const tree2 = new Tree('type2', 'color2', 20, 'sex2');
+const tree3 = new Tree('type3', 'color3', 30, 'sex3');
+const tree4 = new Tree('type4', 'color4', 40, 'sex4');
+const tree5 = new Tree('type5', 'color5', 50, 'sex5');
