@@ -19,7 +19,21 @@ And the following constructors:
 - `Person(name, age, gender)`
 - `Person()`: sets `name` to Jane Doe, `age` to 30, `gender` to female
 */
+class Person {
+  constructor(name = 'Jane Doe', age = 30, gender = 'female') {
+    this.name = name;
+    this.age = age;
+    this.gender = gender;
+  }
 
+  introduce() {
+    console.log(`Hi, I'm ${this.name}, a ${this.age} year old ${this.gender}.`);
+  }
+
+  getGoal() {
+    console.log('My goal is: Live for the moment!');
+  }
+}
 
 
 /*
@@ -46,7 +60,26 @@ The `Student` class has the following constructors:
   `previousOrganization` to The School of Life, `skippedDays` to 0
 */
 
+class Student extends Person {
 
+  constructor(name = 'Jane Doe', age = 30, gender = 'female', previousOrganization = 'The School of Life') {
+    super(name, age, gender);
+    this.previousOrganization = previousOrganization;
+    this.skippedDays = 0;
+  }
+
+  getGoal() {
+    console.log('My goal is: Be a junior software developer.');
+  }
+
+  introduce() {
+    console.log(`Hi, I'm ${this.name}, a ${this.age} year old ${this.gender} from ${this.previousOrganization} who skipped ${this.skippedDays} days from the course already.`);
+  }
+
+  skipDays(numberOfDays) {
+    this.skippedDays -= numberOfDays;
+  }
+}
 
 /*
 ## Mentor
@@ -67,7 +100,20 @@ The `Mentor` class has the following constructors:
 - `Mentor()`: sets `name` to Jane Doe, `age` to 30, `gender` to female, `level`
   to intermediate
 */
+class Mentor extends Person {
+  constructor(name = 'Jane Doe', age = 30, gender = 'female', level = 'intermediate') {
+    super(name, age, gender);
+    this.level = level;
+  }
 
+  getGoal() {
+    console.log('My goal is: Educate brilliant junior software developers.');
+  }
+
+  introduce() {
+    console.log(`Hi, I'm ${this.name}, a ${this.age} year old ${this.gender} ${this.level} mentor.`);
+  }
+}
 
 
 /*
@@ -93,7 +139,26 @@ The `Sponsor` class has the following constructors:
 - `Sponsor()`: sets `name` to Jane Doe, `age` to 30, `gender` to female,
   `company` to Google and `hiredStudents` to 0
 */
+class Sponsor extends Person {
 
+  constructor(name = 'Jane Doe', age = 30, gender = 'female', company = 'Google') {
+    super(name, age, gender);
+    this.company = company;
+    this.hiredStudents = 0;
+  }
+
+  getGoal() {
+    console.log('My goal is: Hire brilliant junior software developers.');
+  }
+
+  introduce() {
+    console.log(`Hi, I'm ${this.name}, a ${this.age} year old ${this.gender} who represents ${this.company} and hired ${this.hiredStudents} students so far.`);
+  }
+
+  hire() {
+    this.hiredStudents++;
+  }
+}
 
 
 /*
@@ -116,6 +181,27 @@ The `Cohort` class has the following constructors:
 - `Cohort(name)`: beside the given parameter, it sets `students` and `mentors`
   as empty lists
 */
+class Cohort {
+
+  constructor(name) {
+    this.name = name;
+    this.students = [];
+    this.mentors = [];
+  }
+
+  addStudent(Student) {
+    this.students.push(Student);
+  }
+
+  addMentor(Mentor) {
+    this.mentors.push(Mentor);
+  }
+
+  info() {
+    console.log(`The ${this.name} cohort has ${this.students.length} students and ${this.mentors.length} mentors.`)
+  }
+}
+
 
 /*
 ## Test input
@@ -240,7 +326,46 @@ The orange Tree doesnt need water
   - when watering it the tree can only absorb the 40% of the water
   - eg. watering with 10 the tree's amount of water should only increase with 4
 */
+class Plant {
+  constructor(color) {
+    this.color = color;
+    this.currentWaterAmount = 0;
+  }
 
+  water() {
+
+  }
+}
+
+class Flower extends Plant {
+  constructor(color) {
+    super(color);
+  }
+
+  water(amount) {
+    this.currentWaterAmount += 0.75 * amount;
+    if (this.currentWaterAmount > 5) {
+      console.log(`The ${this.color} Flower doesnt need water`);
+    } else {
+      console.log(`The ${this.color} Flower needs water`);
+    }
+  }
+}
+
+class Tree extends Plant {
+  constructor(color) {
+    super(color);
+  }
+
+  water(amount) {
+    this.currentWaterAmount += 0.4 * amount;
+    if (this.currentWaterAmount > 10) {
+      console.log(`The ${this.color} Tree doesnt need water`);
+    } else {
+      console.log(`The ${this.color} Tree needs water`);
+    }
+  }
+}
 
 
 /*
@@ -341,3 +466,121 @@ Type F16, Ammo: 8, Base Damage: 30, All Damage: 240
 
 If the health points are 0 then it should return: `It's dead Jim :(`
 */
+
+class Aircraft {
+  constructor(maxAmmo, baseDamage, isPriority, type) {
+    this.maxAmmo = maxAmmo;
+    this.baseDamage = baseDamage;
+    this.isPriority = isPriority;
+    this.type = type;
+    this.ammoStorage = 0;
+  }
+
+  fight() {
+    const damage = this.baseDamage * this.ammoStorage;
+    this.ammoStorage = 0;
+    return damage;
+  }
+
+  refill(fillAmount) {
+    let remainingAmmo = fillAmount - (this.maxAmmo - this.ammoStorage);
+    this.ammoStorage = this.maxAmmo;
+    if (remainingAmmo < 0) {
+      this.ammoStorage += remainingAmmo;
+      remainingAmmo = 0;
+    }
+    return remainingAmmo;
+  }
+
+  getType() {
+    return this.type;
+  }
+
+  getStatus() {
+    return `Type ${this.getType()}, Ammo: ${this.ammoStorage}, Base Damage: ${this.baseDamage}, All Damage: ${this.ammoStorage * this.baseDamage}`;
+  }
+
+  getIsPriority() {
+    return this.isPriority;
+  }
+
+}
+
+class F16 extends Aircraft {
+
+  constructor() {
+    super(8, 30, false, 'f16');
+  }
+
+}
+
+class F35 extends Aircraft {
+
+  constructor() {
+    super(12, 50, true, 'f35');
+  }
+
+}
+
+class Carrier {
+
+  constructor(ammoStorage, HP) {
+    this.ammoStorage = ammoStorage;
+    this.HP = HP;
+    this.aircrafts = [];
+  }
+
+  add(aircraft) {
+    this.aircrafts.push(aircraft);
+  }
+
+  fill() {
+
+    if (this.ammoStorage == 0) {
+      throw 'no ammo';
+    }
+
+    this.aircrafts.forEach((aircraft) => {
+      if (this.ammoStorage == 0) {
+        return;
+      }
+      if (aircraft.getIsPriority()) {
+        this.ammoStorage = aircraft.refill(this.ammoStorage);
+      }
+    });
+
+    this.aircrafts.forEach((aircraft) => {
+      if (this.ammoStorage == 0) {
+        return;
+      }
+      if (!aircraft.getIsPriority()) {
+        this.ammoStorage = aircraft.refill(this.ammoStorage);
+      }
+    });
+
+  }
+
+  fight(carrier) {
+    this.aircrafts.forEach((aircraft) => carrier.HP -= aircraft.fight());
+  }
+
+  getStatus() {
+    if (this.HP <= 0) {
+      console.log('It\'s dead Jim :(');
+    } else {
+      this.aircrafts.forEach((aircraft) => console.log(aircraft.getStatus()));
+    }
+  }
+
+}
+
+const carrier1 = new Carrier(20, 10000);
+carrier1.add(new F35());
+carrier1.add(new F35());
+carrier1.add(new F16());
+carrier1.add(new F16());
+carrier1.fill();
+carrier1.getStatus();
+carrier1.fight(new Carrier(20, 10000));
+carrier1.getStatus();
+carrier1.fill();
