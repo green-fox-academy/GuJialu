@@ -524,7 +524,7 @@ class Aircraft {
   }
 
   getStatus() {
-    return `Type ${this.constructor.name}, Ammo: ${this.ammoStorage}, Base Damage: ${this.baseDamage}, All Damage: ${this.ammoStorage * this.baseDamage}`;
+    return `Type ${this.constructor.name}, Ammo: ${this.ammoStorage}, Base Damage: ${this.baseDamage}, All Damage: ${this.ammoStorage * this.baseDamage}\n`;
   }
 
   getIsPriority() {
@@ -589,13 +589,16 @@ class Carrier {
 
   fight(carrier) {
     this.aircrafts.forEach((aircraft) => carrier.HP -= aircraft.fight());
+    carrier.aircrafts.forEach((aircraft) => this.HP -= aircraft.fight());
   }
 
   getStatus() {
     if (this.HP <= 0) {
-      console.log('It\'s dead Jim :(');
+      return 'It\'s dead Jim :(';
     } else {
-      this.aircrafts.forEach((aircraft) => console.log(aircraft.getStatus()));
+      let status = '';
+      this.aircrafts.forEach((aircraft) => status = status.concat(aircraft.getStatus()));
+      return status;
     }
   }
 
@@ -607,7 +610,7 @@ carrier1.add(new F35());
 carrier1.add(new F16());
 carrier1.add(new F16());
 carrier1.fill();
-carrier1.getStatus();
+console.log(carrier1.getStatus());
 carrier1.fight(new Carrier(20, 10000));
-carrier1.getStatus();
+console.log(carrier1.getStatus());
 carrier1.fill();
