@@ -141,7 +141,7 @@ class Counter {
 /*
 Pokemon
 */
-const Pokemon = require('./Pokemon');
+const Pokemon = require('./Pokemon').default;
 
 const pokemonOfAsh = initializePokemon();
 

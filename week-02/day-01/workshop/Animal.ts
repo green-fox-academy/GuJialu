@@ -1,3 +1,5 @@
+import { Flyable } from "./Flyable";
+
 export abstract class Animal {
     protected name: string;
     protected age: number;
@@ -33,7 +35,16 @@ export class Reptile extends Animal {
     }
 }
 
-export class Bird extends Animal {
+export class Bird extends Animal implements Flyable {
+    land(): void {
+        console.log('land');
+    }
+    fly(): void {
+        console.log('fly');
+    }
+    takeOff(): void {
+        console.log('take off');
+    }
     constructor(name: string) {
         super(name);
     }
