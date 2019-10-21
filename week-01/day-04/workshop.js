@@ -595,6 +595,7 @@ class Ship {
   getScore() {
     let score = 0;
     this.pirates.forEach((pirate) => pirate.isDied ? null : score++);
+    score += this.pirates.filter((pirate) => !pirate.isDied).length;
     score -= this.capitain.consumedRum;
     return score;
   }
