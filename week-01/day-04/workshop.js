@@ -141,7 +141,7 @@ class Counter {
 /*
 Pokemon
 */
-const Pokemon = require('./Pokemon').default;
+const Pokemon = require('./Pokemon');
 
 const pokemonOfAsh = initializePokemon();
 
@@ -173,7 +173,7 @@ function initializePokemon() {
 Fleet of thing
 */
 
-const Thing = require('./thing').default;
+const Thing = require('./thing');
 const Fleet = require('./fleet');
 
 const fleet = new Fleet();
@@ -541,11 +541,15 @@ class Pirate {
 
   constructor() {
     this.consumedRum = 0;
-    this.isDied = false;
+    this.isDead = false;
+    this.isPassOut = false;
   }
 
-  drinkSomeRum() {
-    this.consumedRum++;
+  drinkSomeRum(amount = 1) {
+    this.consumedRum += amount;
+    if (this.consumedRum >= 4) {
+      this.passOut();
+    }
   }
 
   howsItGoingMate() {
@@ -557,7 +561,11 @@ class Pirate {
   }
 
   die() {
-    this.isDied = true;
+    this.isDead = true;
+  }
+
+  passOut() {
+    this.isPassOut = true;
   }
 
   brawl(x) {
@@ -570,8 +578,8 @@ class Pirate {
         x.die();
         break;
       case 3:
-        this.die();
-        x.die();
+        this.passOut();
+        x.passOut();
     }
   }
 
@@ -594,7 +602,7 @@ class Ship {
 
   getScore() {
     let score = 0;
-    this.pirates.forEach((pirate) => pirate.isDied ? null : score++);
+    //this.pirates.forEach((pirate) => pirate.isDied ? null : score++);
     score += this.pirates.filter((pirate) => !pirate.isDied).length;
     score -= this.capitain.consumedRum;
     return score;
@@ -611,7 +619,8 @@ class Ship {
   }
 
   win() {
-    this.capitain.consumedRum += Math.floor(Math.random() * 10);
+    this.capitain.drinkSomeRum(Math.floor(Math.random() * 10));
+    this.pirates.forEach((pirate) => pirate.drinkSomeRum(Math.floor(Math.random() * 10)));
   }
 
   battle(otherShip) {
@@ -639,6 +648,10 @@ class BattleApp {
 }
 
 class Armada {
+  constructor(){
+    this.ships = [];
+  }
+
   fillArmada() {
     this.ships = [];
     const shipsNum = Math.floor(Math.random() * 10 + 4);
@@ -671,7 +684,7 @@ class Armada {
 }
 
 class WarApp {
-  constructor() {
+  war() {
     const armada1 = new Armada();
     armada1.fillArmada();
     const armada2 = new Armada();
@@ -681,6 +694,7 @@ class WarApp {
 }
 
 const warApp = new WarApp();
+warApp.war();
 
 
 /*
