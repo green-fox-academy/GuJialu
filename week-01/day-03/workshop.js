@@ -415,17 +415,17 @@ const aliceList = {
   Tomato: 10,
 }
 
-let bobPay = 0;
-for (let key in bobList) {
-  bobPay += bobList[key] * products[key];
+function totalPayment(list) {
+  let pay = 0;
+  for (let key in list) {
+    pay += list[key] * products[key];
+  }
+  return pay;
 }
-console.log('Bob pays ' + bobPay);
 
-let alicePay = 0;
-for (let key in aliceList) {
-  alicePay += aliceList[key] * products[key];
-}
-console.log('Alice pays ' + alicePay);
+console.log('Bob pays ' + totalPayment(bobList));
+
+console.log('Alice pays ' + totalPayment(aliceList));
 
 //ternary operator if dor assignment or returns but not command execution
 //const whoBuysMore = (product) => aliceList[product] > bobList[product] ? console.log('Alice buys more ' + product) : console.log('Bob buys more ' + product);
