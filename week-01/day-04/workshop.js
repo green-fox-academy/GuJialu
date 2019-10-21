@@ -365,7 +365,7 @@ class Station {
   refill(car) {
     this.gasAmount -= car.capacity - car.gasAmount;
     car.gasAmount = car.capacity;
-    if(this.gasAmount<0){
+    if (this.gasAmount < 0) {
       car.gasAmount += this.gasAmount
       this.gasAmount = 0;
     }
@@ -396,20 +396,20 @@ console.log(station.gasAmount);
      -  `countUsable()` -> sharpie is usable if it has ink in it
      -  `removeTrash()` -> removes all unusable sharpies
 */
-class SharpieSet{
+class SharpieSet {
 
-  constructor(sharpies){
+  constructor(sharpies) {
     this.sharpies = sharpies;
   }
 
-  countUsable(){
+  countUsable() {
     let count = 0;
-    this.sharpies.forEach(()=>Sharpie.inkAmount>0 ? count++ : null);
+    this.sharpies.forEach(() => Sharpie.inkAmount > 0 ? count++ : null);
     return count;
   }
 
-  removeTrash(){
-    this.sharpies = this.sharpies.filter((value) => value.inkAmount>0);
+  removeTrash() {
+    this.sharpies = this.sharpies.filter((value) => value.inkAmount > 0);
   }
 }
 
@@ -422,28 +422,28 @@ class SharpieSet{
   - breed() -> creates a new animal if there's place for it
   - slaughter() -> removes the least hungry animal
 */
-class Farm{
-  constructor(animals, slots){
+class Farm {
+  constructor(animals, slots) {
     this.animals = animals;
     this.slots = slots
   }
 
-  breed(){
-    if(this.slots>0){
+  breed() {
+    if (this.slots > 0) {
       this.animals.push(new Animal());
       this.slots--;
     }
   }
 
-  slaughter(){
-    if(this.animals.length==0){
+  slaughter() {
+    if (this.animals.length == 0) {
       return;
     }
 
     let leastHungryAnimal = this.animals[0];
     let leastHungryAnimalIndex = 0;
     this.animals.forEach((animal, index) => {
-      if(leastHungryAnimal.hunger>animal.hunger){
+      if (leastHungryAnimal.hunger > animal.hunger) {
         leastHungryAnimal = animal;
         leastHungryAnimalIndex = index;
       }
@@ -463,16 +463,16 @@ class Farm{
      -  delete(int) one item at given index
      -  update(int, BlogPost) one item at the given index and update it with another BlogPost
 */
-class Blog{
-  constructor(blogPosts){
+class Blog {
+  constructor(blogPosts) {
     this.blogPosts = blogPosts;
   }
 
-  delete(int){
+  delete(int) {
     this.blogPosts.splice(int, 1);
   }
 
-  update(int, blogPost){
+  update(int, blogPost) {
     this.blogPosts.splice(int, 1, blogPost);
   }
 }
@@ -537,32 +537,32 @@ Add a parrot.
  -  Create 2 armadas, fill them with ships
  -  Have a war!
 */
-class Pirate{
+class Pirate {
 
-  constructor(){
+  constructor() {
     this.consumedRum = 0;
     this.isDied = false;
   }
 
-  drinkSomeRum(){
+  drinkSomeRum() {
     this.consumedRum++;
   }
 
-  howsItGoingMate(){
-    if(this.consumedRum<=4){
+  howsItGoingMate() {
+    if (this.consumedRum <= 4) {
       console.log("Pour me anudder!");
-    }else{
+    } else {
       console.log("Arghh, I'ma Pirate. How d'ya d'ink its goin?");
     }
   }
 
-  die(){
+  die() {
     this.isDied = true;
   }
 
-  brawl(x){
+  brawl(x) {
     const result = Math.floor(Math.random() * 3 + 1);
-    switch(result){
+    switch (result) {
       case 1:
         this.die();
         break;
@@ -577,49 +577,49 @@ class Pirate{
 
 }
 
-class Ship{
+class Ship {
 
-  constructor(){
+  constructor() {
     this.pirates = [];
     this.capitain;
   }
 
-  fillShip(){
+  fillShip() {
     const piratesNum = Math.floor(Math.random() * 100 + 5);
-    for(let i=0; i<piratesNum; i++){
+    for (let i = 0; i < piratesNum; i++) {
       this.pirates.push(new Pirate());
     }
     this.capitain = new Pirate();
   }
 
-  getScore(){
+  getScore() {
     let score = 0;
-    this.pirates.forEach((pirate) => pirate.isDied ? null:score++);
-    score-=this.capitain.consumedRum;
+    this.pirates.forEach((pirate) => pirate.isDied ? null : score++);
+    score -= this.capitain.consumedRum;
     return score;
   }
 
-  loss(){
+  loss() {
     let numDeath = Math.floor(Math.random() * 100);
-    for(let i=0; i<this.pirates.length && numDeath>0; i++){
-      if(!this.pirates[i].isDied){
+    for (let i = 0; i < this.pirates.length && numDeath > 0; i++) {
+      if (!this.pirates[i].isDied) {
         this.pirates[i].die();
         numDeath--;
       }
     }
   }
 
-  win(){
+  win() {
     this.capitain.consumedRum += Math.floor(Math.random() * 10);
   }
 
-  battle(otherShip){
+  battle(otherShip) {
     console.log(`${this.getScore()} > ${otherShip.getScore()}`);
-    if(this.getScore() > otherShip.getScore()){
+    if (this.getScore() > otherShip.getScore()) {
       this.win();
       otherShip.loss();
       return true;
-    }else{
+    } else {
       this.loss();
       otherShip.win();
       return false;
@@ -627,8 +627,8 @@ class Ship{
   }
 }
 
-class BattleApp{
-  constructor(){
+class BattleApp {
+  battle() {
     const ship1 = new Ship();
     ship1.fillShip();
     const ship2 = new Ship();
@@ -637,30 +637,30 @@ class BattleApp{
   }
 }
 
-class Armada{
-  fillArmada(){
+class Armada {
+  fillArmada() {
     this.ships = [];
     const shipsNum = Math.floor(Math.random() * 10 + 4);
-    for(let i=0; i<shipsNum; i++){
+    for (let i = 0; i < shipsNum; i++) {
       const ship = new Ship();
       ship.fillShip();
       this.ships.push(ship);
     }
   }
 
-  war(otherArmada){
-    while(true){
-      if(this.ships.length===0){
+  war(otherArmada) {
+    while (true) {
+      if (this.ships.length === 0) {
         return false;
       }
-      if(otherArmada.ships.length===0){
+      if (otherArmada.ships.length === 0) {
         return true;
       }
 
-      if(this.ships[0].battle(otherArmada.ships[0])){
+      if (this.ships[0].battle(otherArmada.ships[0])) {
         otherArmada.ships.shift();
         console.log("armada1 win");
-      }else{
+      } else {
         this.ships.shift();
         console.log("armada2 win");
       }
@@ -669,8 +669,8 @@ class Armada{
 
 }
 
-class WarApp{
-  constructor(){
+class WarApp {
+  constructor() {
     const armada1 = new Armada();
     armada1.fillArmada();
     const armada2 = new Armada();
@@ -694,8 +694,8 @@ const warApp = new WarApp();
   - you can use just variables, or lists and/or maps
 */
 
-class Tree{
-  constructor(type, leafColor, age, sex){
+class Tree {
+  constructor(type, leafColor, age, sex) {
     this.type = type;
     this.leafColor = leafColor;
     this.age = age;

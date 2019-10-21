@@ -427,10 +427,13 @@ for (let key in aliceList) {
 }
 console.log('Alice pays ' + alicePay);
 
-const whoBuysMore = (product) => aliceList[product] > bobList[product] ? console.log('Alice buys more ' + product) : console.log('Bob buys more ' + product);
+//ternary operator if dor assignment or returns but not command execution
+//const whoBuysMore = (product) => aliceList[product] > bobList[product] ? console.log('Alice buys more ' + product) : console.log('Bob buys more ' + product);
+const whoBuysMore = (product) => aliceList[product] > bobList[product] ? 'Alice' : 'Bob';
 
-whoBuysMore('Rice');
-whoBuysMore('Potato');
+
+console.log(`${whoBuysMore('Rice')} buys more different products`);
+console.log(`${whoBuysMore('Potato')} buys more different products`);
 
 Object.keys(aliceList).length > Object.keys(bobList).length ? console.log('Alice buys more different priducts') : console.log('Bob buys more different priducts');
 
