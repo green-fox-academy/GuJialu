@@ -564,7 +564,7 @@ class Carrier {
   fill() {
 
     if (this.ammoStorage == 0) {
-      throw 'no ammo';
+      throw new Error('no ammo');
     }
 
     this.aircrafts.forEach((aircraft) => {
