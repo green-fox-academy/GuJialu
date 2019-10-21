@@ -173,7 +173,7 @@ function initializePokemon() {
 Fleet of thing
 */
 
-const Thing = require('./thing');
+const Thing = require('./thing').default;
 const Fleet = require('./fleet');
 
 const fleet = new Fleet();

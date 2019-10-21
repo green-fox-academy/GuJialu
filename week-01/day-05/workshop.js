@@ -327,45 +327,72 @@ The orange Tree doesnt need water
   - eg. watering with 10 the tree's amount of water should only increase with 4
 */
 class Plant {
-  constructor(color) {
+
+  constructor(color, absorbLevel, needsWaterLevel) {
     this.color = color;
     this.currentWaterAmount = 0;
+    this.absorbLevel = absorbLevel;
+    this.needsWaterLevel = needsWaterLevel;
   }
 
-  water() {
-
+  water(amount) {
+    this.currentWaterAmount += this.absorbLevel * amount;
   }
+
+  toString() {
+    const needsWater = this.currentWaterAmount > this.needsWaterLevel ?
+      'doesn\'t need' :
+      'needs';
+    return `The ${this.color} ${this.constructor.name} ${needsWater} water`;
+  }
+
 }
 
 class Flower extends Plant {
   constructor(color) {
-    super(color);
-  }
-
-  water(amount) {
-    this.currentWaterAmount += 0.75 * amount;
-    if (this.currentWaterAmount > 5) {
-      console.log(`The ${this.color} Flower doesnt need water`);
-    } else {
-      console.log(`The ${this.color} Flower needs water`);
-    }
+    super(color, 0.75, 5);
   }
 }
 
 class Tree extends Plant {
   constructor(color) {
-    super(color);
+    super(color, 0.4, 10);
+  }
+}
+
+class Garden {
+
+  constructor() {
+    this.plants = [];
+  }
+
+  add(plant) {
+    this.plants.push(plant);
   }
 
   water(amount) {
-    this.currentWaterAmount += 0.4 * amount;
-    if (this.currentWaterAmount > 10) {
-      console.log(`The ${this.color} Tree doesnt need water`);
-    } else {
-      console.log(`The ${this.color} Tree needs water`);
-    }
+    const plantsNeedWater = this.plants.filter((plant) => plant.currentWaterAmount < plant.needsWaterLevel)
+    const waterAmountEach = amount / plantsNeedWater.length;
+    plantsNeedWater.forEach((plant) => plant.water(waterAmountEach));
   }
+
+  toString(){
+    this.plants.forEach((plant) => console.log(plant.toString()));
+  }
+
 }
+
+const garden = new Garden();
+garden.add(new Tree('yellow'));
+garden.add(new Tree('green'));
+garden.add(new Flower('pulper'));
+garden.add(new Flower('red'));
+
+garden.toString();
+console.log('------------------------------');
+garden.water(40);
+console.log('------------------------------');
+garden.toString();
 
 
 /*
@@ -497,7 +524,7 @@ class Aircraft {
   }
 
   getStatus() {
-    return `Type ${this.getType()}, Ammo: ${this.ammoStorage}, Base Damage: ${this.baseDamage}, All Damage: ${this.ammoStorage * this.baseDamage}`;
+    return `Type ${this.constructor.name}, Ammo: ${this.ammoStorage}, Base Damage: ${this.baseDamage}, All Damage: ${this.ammoStorage * this.baseDamage}`;
   }
 
   getIsPriority() {
