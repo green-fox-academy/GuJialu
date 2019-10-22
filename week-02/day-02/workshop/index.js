@@ -182,9 +182,9 @@ function foo(rowsNum, columnNum, ...rest) {
 
   const matrix = [];
 
-  for(let i=0; i<rowsNum; i++){
+  for (let i = 0; i < rowsNum; i++) {
     let row = [];
-    for(let j=0; j<columnNum; j++){
+    for (let j = 0; j < columnNum; j++) {
       row.push(rest.shift());
     }
     matrix.push(row);
@@ -205,14 +205,21 @@ function isTriangle(a, b, c) {
   return true;
 }
 var possibleTriangles = [
-    [1, 1, 1],
-    [3, 4, 5],
-    [1, 2, 3],
-    [5, 12, 13],
-    [-1, -1, -1],
+  [1, 1, 1],
+  [3, 4, 5],
+  [1, 2, 3],
+  [5, 12, 13],
+  [-1, -1, -1],
 ];
 const isTriangles = []
 possibleTriangles.forEach((trig) => isTriangles.push(isTriangle(...trig)));
 console.log(isTriangles);
 
 
+//let + const vs. var
+function average(numArray) {
+  const length = numArray.length;
+  return numArray.reduce((a, b) => a + b)/length;
+}
+
+console.log(average([1, 2, 4, 5]));
