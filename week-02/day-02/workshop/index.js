@@ -169,7 +169,11 @@ function coffee(milk = false, sugar = false) {
     return 'coffee with milk';
   } else if (sugar) {
     return 'coffee with sugar';
+  } else {
+    return 'coffee';
   }
 }
 
 console.log(coffee());
+
+
