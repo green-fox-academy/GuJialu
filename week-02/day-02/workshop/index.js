@@ -261,4 +261,9 @@ let s = new Set();
 s.add(1);
 console.log(s.get(0));
 
-//
+//Array.prototype.includes()
+function notInBoth(a, b){
+  return a.filter((x) => !b.includes(x)).concat(b.filter((x) => !a.includes(x)));
+}
+
+console.log(notInBoth([1, 3], [1, 2]));
