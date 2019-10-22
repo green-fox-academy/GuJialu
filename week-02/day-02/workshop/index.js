@@ -343,3 +343,22 @@ function vectorInit(x=0, y=0, z=0){
 for(let vector of vectors){
   console.log(vectorInit(...vector));
 }
+
+
+//Primitive fields
+const primitiveFields = { x: 1, y: true, z: [], a: '12'};
+
+function getPrimitiveFields(obj){
+
+  const primitiveFields = [];
+  for(let entry of Object.entries(obj)){
+    if(Object(entry[1]) !== entry[1]){
+      primitiveFields.push(entry[0]);
+    }
+  }
+  return primitiveFields;
+
+}
+
+console.log(getPrimitiveFields(primitiveFields));
+
