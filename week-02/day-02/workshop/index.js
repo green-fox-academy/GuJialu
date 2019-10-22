@@ -267,3 +267,19 @@ function notInBoth(a, b){
 }
 
 console.log(notInBoth([1, 3], [1, 2]));
+
+
+//Object.values / Object.entries
+const obj = { x: 1, y: 2, z: 3 };
+
+function highestCountWord(obj){
+  let highestEntry = undefined;
+  for (let entry of Object.entries(obj)) {
+    if(highestEntry===undefined || highestEntry[1]<entry[1]){
+      highestEntry = entry;
+    }
+  }
+  return highestEntry[0];
+}
+
+console.log(highestCountWord(obj));
