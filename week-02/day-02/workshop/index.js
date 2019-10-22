@@ -361,4 +361,3 @@ function getPrimitiveFields(obj){
 }
 
 console.log(getPrimitiveFields(primitiveFields));
-
