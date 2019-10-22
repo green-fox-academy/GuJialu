@@ -177,3 +177,26 @@ function coffee(milk = false, sugar = false) {
 console.log(coffee());
 
 
+//Rest
+function foo(rowsNum, columnNum, ...rest) {
+
+  const matrix = [];
+
+  for(let i=0; i<rowsNum; i++){
+    let row = [];
+    for(let j=0; j<columnNum; j++){
+      row.push(rest.shift());
+    }
+    matrix.push(row);
+  }
+  return matrix;
+
+}
+
+console.log(foo(2, 3, 2, 3, 2, 3, 2, 3));
+
+
+//Spread
+
+
+
