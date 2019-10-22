@@ -223,3 +223,19 @@ function average(numArray) {
 }
 
 console.log(average([1, 2, 4, 5]));
+
+
+//For ... of
+const data = [5, 1, 2, 9, 7, 3, 8];
+
+function getMax(data){
+  let max = undefined;
+  for(let num of data){
+    if(max===undefined || num > max){
+      max = num;
+    }
+  }
+  return max;
+}
+
+console.log(getMax(data));
