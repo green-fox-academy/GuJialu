@@ -239,3 +239,26 @@ function getMax(data){
 }
 
 console.log(getMax(data));
+
+
+//Set
+function Set(){
+  this.elements = [];
+}
+
+Set.prototype.add = function(e){
+  this.elements.forEach((element) => {
+    if(element === e){
+      return;
+    }
+  });
+  this.elements.push(e);
+}
+
+Set.prototype.get = function(index){
+  return this.elements[index];
+}
+
+let s = new Set();
+s.add(1);
+console.log(s.get(0));
