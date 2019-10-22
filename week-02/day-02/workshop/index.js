@@ -247,7 +247,7 @@ function Set() {
 }
 
 Set.prototype.add = function (e) {
-  if (this.elements.indexOf(e) !== -1){
+  if (this.elements.includes(e)){
     return;
   }
   this.elements.push(e);
@@ -261,3 +261,4 @@ let s = new Set();
 s.add(1);
 console.log(s.get(0));
 
+//
