@@ -219,7 +219,7 @@ console.log(isTriangles);
 //let + const vs. var
 function average(numArray) {
   const length = numArray.length;
-  return numArray.reduce((a, b) => a + b)/length;
+  return numArray.reduce((a, b) => a + b) / length;
 }
 
 console.log(average([1, 2, 4, 5]));
@@ -228,10 +228,10 @@ console.log(average([1, 2, 4, 5]));
 //For ... of
 const data = [5, 1, 2, 9, 7, 3, 8];
 
-function getMax(data){
+function getMax(data) {
   let max = undefined;
-  for(let num of data){
-    if(max===undefined || num > max){
+  for (let num of data) {
+    if (max === undefined || num > max) {
       max = num;
     }
   }
@@ -242,23 +242,22 @@ console.log(getMax(data));
 
 
 //Set
-function Set(){
+function Set() {
   this.elements = [];
 }
 
-Set.prototype.add = function(e){
-  this.elements.forEach((element) => {
-    if(element === e){
-      return;
-    }
-  });
+Set.prototype.add = function (e) {
+  if (this.elements.indexOf(e) !== -1){
+    return;
+  }
   this.elements.push(e);
 }
 
-Set.prototype.get = function(index){
+Set.prototype.get = function (index) {
   return this.elements[index];
 }
 
 let s = new Set();
 s.add(1);
 console.log(s.get(0));
+
