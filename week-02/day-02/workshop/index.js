@@ -283,3 +283,24 @@ function highestCountWord(obj){
 }
 
 console.log(highestCountWord(obj));
+
+
+//Proxy
+const handler = {
+  get: function(targetObject, field) {
+    if (field === 'nextId') {
+      if(targetObject.nextId !== undefined){
+        targetObject.nextId++;
+      }else{
+        targetObject.nextId = 1;
+      }
+      return targetObject.nextId;
+    }
+    return undefined;
+  }
+};
+
+const target = { a: 1, b: 1, c: 1 };
+const proxyObject = new Proxy(target, handler);
+console.log(proxyObject.nextId);
+console.log(proxyObject.nextId);
