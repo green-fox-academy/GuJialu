@@ -304,3 +304,18 @@ const target = { a: 1, b: 1, c: 1 };
 const proxyObject = new Proxy(target, handler);
 console.log(proxyObject.nextId);
 console.log(proxyObject.nextId);
+
+
+//BMI
+const BMIObj = {
+  mass: 50,
+  height: 120
+}
+
+function BMI(BMIObj){
+  const newBMIObj = Object.assign(BMIObj);
+  newBMIObj.BMI = BMIObj.mass / (BMIObj.height * BMIObj.height);
+  return newBMIObj;
+}
+
+console.log(BMI(BMIObj));
