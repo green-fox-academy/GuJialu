@@ -38,6 +38,9 @@ export class ElectricGuitar extends StingedInstrument{
   }
 }
 
+let e: ElectricGuitar = new ElectricGuitar();
+
+
 export class BassGuitar extends StingedInstrument{
   constructor(numberOfString=4) {
     super('Bass Guitar', numberOfString);
