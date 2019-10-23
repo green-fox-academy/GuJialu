@@ -57,19 +57,43 @@ class myTree implements Tree {
 
   remove(value: string): void {
     //remove and replace with right's left most
-    this.removeNodeFrom(this.root, value);
+    this.root = this.removeNodeFrom(this.root, value);
   }
 
   private removeNodeFrom(node: TreeNode, value: string): TreeNode {
 
+    //nothing to remove
     if (node === null) {
-      return;
+      return node;
     }
 
     if (node.value === value) {
-      if (node.right === null) {
-
+      if (node.right === null && node.left === null) {
+        //no child case
+        return null;
+      } else if (node.right === null) {
+        //no right child case
+        return node.left;
+      } else if (node.left === null) {
+        //no left child case
+        return node.right;
+      } else {
+        //two children case
+        let nodeNextInOrder: TreeNode = node.right;
+        while (nodeNextInOrder.left !== null) {
+          nodeNextInOrder = nodeNextInOrder.left;
+        }
+        let tempValue: string = nodeNextInOrder.value;
+        node = this.removeNodeFrom(node, tempValue);
+        node.value = tempValue;
+        return node;
       }
+    } else if (value < node.value) {
+      node.left = this.removeNodeFrom(node.left, value);
+      return node;
+    } else {
+      node.right = this.removeNodeFrom(node.right, value);
+      return node;
     }
 
   }
@@ -78,7 +102,7 @@ class myTree implements Tree {
     return this.searchNodeFrom(this.root, value);
   }
 
-  private searchNodeFrom(node: TreeNode, value: string) {
+  private searchNodeFrom(node: TreeNode, value: string): boolean {
 
     if (node === null) {
       return false;
@@ -101,22 +125,6 @@ t.add('3');
 t.add('1');
 t.add('2');
 console.log(t.search('2'));
-//t.remove('2');
+t.remove('2');
 console.log(t);
 console.log(t.search('2'));
-
-/*
-    if (node.value === value) {
-      let nodeSecRsLMost: TreeNode = node.right;
-      while (nodeSecRsLMost !== null && nodeSecRsLMost.left !== null) {
-        nodeSecRsLMost = nodeSecRsLMost.left;
-      }
-      node.value = nodeSecRsLMost.left.value;
-      nodeSecRsLMost = null;
-      return;
-    } else if (value < node.value) {
-      this.removeNodeFrom(node.left, value);
-    } else {
-      this.removeNodeFrom(node.right, value);
-    }
-*/
