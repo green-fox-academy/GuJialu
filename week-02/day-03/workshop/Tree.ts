@@ -15,7 +15,6 @@ class TreeNode {
   constructor(value: string) {
     this.left = null;
     this.right = null;
-    this.height = 0;
     this.value = value;
   }
 
@@ -34,33 +33,24 @@ class myTree implements Tree {
 
   add(value: string): void {
 
-    if (this.root === null) {
-      this.root = new TreeNode(value);
-      return;
-    }
-
-    this.addNodeFrom(this.root, value);
+    this.root = this.addNodeFrom(this.root, value);
 
   }
 
-  private addNodeFrom(node: TreeNode, value: string): void {
+  private addNodeFrom(node: TreeNode, value: string): TreeNode {
+
+    if (node === null) {
+      return new TreeNode(value);
+    }
 
     if (value === node.value) {
-      return;
+      return node;
     } else if (value < node.value) {
-      if (node.left === null) {
-        node.left = new TreeNode(value);
-      } else {
-        this.addNodeFrom(node.left, value);
-      }
-      node.height++;
+      node.left = this.addNodeFrom(node.left, value);
+      return node;
     } else {
-      if (node.right === null) {
-        node.right = new TreeNode(value);
-      } else {
-        this.addNodeFrom(node.right, value);
-      }
-      node.height++;
+      node.right = this.addNodeFrom(node.right, value);
+      return node;
     }
 
   }
@@ -70,13 +60,17 @@ class myTree implements Tree {
     this.removeNodeFrom(this.root, value);
   }
 
-  private removeNodeFrom(node: TreeNode, value: string) {
+  private removeNodeFrom(node: TreeNode, value: string): TreeNode {
 
     if (node === null) {
       return;
     }
 
+    if (node.value === value) {
+      if (node.right === null) {
 
+      }
+    }
 
   }
 
@@ -107,6 +101,22 @@ t.add('3');
 t.add('1');
 t.add('2');
 console.log(t.search('2'));
-t.remove('2');
+//t.remove('2');
 console.log(t);
 console.log(t.search('2'));
+
+/*
+    if (node.value === value) {
+      let nodeSecRsLMost: TreeNode = node.right;
+      while (nodeSecRsLMost !== null && nodeSecRsLMost.left !== null) {
+        nodeSecRsLMost = nodeSecRsLMost.left;
+      }
+      node.value = nodeSecRsLMost.left.value;
+      nodeSecRsLMost = null;
+      return;
+    } else if (value < node.value) {
+      this.removeNodeFrom(node.left, value);
+    } else {
+      this.removeNodeFrom(node.right, value);
+    }
+*/
