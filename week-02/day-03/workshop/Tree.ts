@@ -123,8 +123,13 @@ class myTree implements Tree {
 const t: myTree = new myTree();
 t.add('3');
 t.add('1');
+t.add('4');
+t.add('8');
+t.add('7');
 t.add('2');
-console.log(t.search('2'));
-t.remove('2');
+t.add('5');
+t.add('6');
+console.log(t.search('4'));
+t.remove('4');
 console.log(t);
-console.log(t.search('2'));
+console.log(t.search('4'));
