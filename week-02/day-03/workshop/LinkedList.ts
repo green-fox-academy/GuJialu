@@ -6,7 +6,7 @@ interface LinkedList {
   size(): number;
 }
 
-class myNode {
+export class myNode {
 
   value: string
   next: myNode
