@@ -20,7 +20,7 @@ class TreeNode {
 
 }
 
-class myTree implements Tree {
+class myBinarySearchTree implements Tree {
   root: TreeNode;
 
   constructor() {
@@ -120,7 +120,7 @@ class myTree implements Tree {
 
 }
 
-const t: myTree = new myTree();
+const t: myBinarySearchTree = new myBinarySearchTree();
 t.add('3');
 t.add('1');
 t.add('4');
