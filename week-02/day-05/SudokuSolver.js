@@ -1,37 +1,37 @@
-class SudokuSolver{
+class SudokuSolver {
 
-  constructor(){
+  constructor() {
     //this.puzzle = sudoku.puzzle;
   }
 
-  isValid(num, i, j){
+  isValid(num, i, j) {
     return this.isValidOnRow(num, i) && this.isValidOnColumn(num, j) && this.isValidOnSqure(num, i, j);
   }
 
-  isValidOnRow(num, i){
-    for(let j=0; j<9; j++){
-      if(num === this.puzzle[i][j]){
+  isValidOnRow(num, i) {
+    for (let j = 0; j < 9; j++) {
+      if (num === this.puzzle[i][j]) {
         return false;
       }
     }
     return true;
   }
 
-  isValidOnColumn(num, j){
-    for(let i=0; i<9; i++){
-      if(num === this.puzzle[i][j]){
+  isValidOnColumn(num, j) {
+    for (let i = 0; i < 9; i++) {
+      if (num === this.puzzle[i][j]) {
         return false;
       }
     }
     return true;
   }
 
-  isValidOnSqure(num, i, j){
-    const squrei = Math.floor(i/3)*3;
-    const squrej = Math.floor(j/3)*3;
-    for(let ii = squrei; ii<squrei+3; ii++){
-      for(let jj = squrej; jj<squrej+3; jj++){
-        if(num === this.puzzle[ii][jj]){
+  isValidOnSqure(num, i, j) {
+    const squrei = Math.floor(i / 3) * 3;
+    const squrej = Math.floor(j / 3) * 3;
+    for (let ii = squrei; ii < squrei + 3; ii++) {
+      for (let jj = squrej; jj < squrej + 3; jj++) {
+        if (num === this.puzzle[ii][jj]) {
           return false;
         }
       }
@@ -39,22 +39,22 @@ class SudokuSolver{
     return true;
   }
 
-  solve(sudoku){
+  solve(sudoku) {
     this.puzzle = sudoku.puzzle;
     this.solveR();
   }
 
-  solveR(){
-    for(let i=0; i<9; i++){
-      for(let j=0; j<9; j++){
+  solveR() {
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < 9; j++) {
 
-        if(this.puzzle[i][j]==='_'){
-          for(let n=1; n<10; n++){
-            if(this.isValid(n.toString(), i, j)){
+        if (this.puzzle[i][j] === '_') {
+          for (let n = 1; n < 10; n++) {
+            if (this.isValid(n.toString(), i, j)) {
               this.puzzle[i][j] = n.toString();
-              if(this.solveR()){
+              if (this.solveR()) {
                 return true;
-              }else{
+              } else {
                 this.puzzle[i][j] = '_';
               }
             }
@@ -67,7 +67,7 @@ class SudokuSolver{
     return true;
   }
 
-  
+
 }
 
 const Sudoku = require('./Sudoku');

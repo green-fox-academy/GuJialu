@@ -13,7 +13,7 @@ export class myStack implements Stack {
     return this.stack.length === 0;
   }
   peek(): string {
-    return this.stack[this.stack.length-1];
+    return this.stack[this.stack.length - 1];
   }
   push(value: string): void {
     this.stack.push(value);
@@ -24,14 +24,14 @@ export class myStack implements Stack {
 
 }
 
-interface Queue {
+export interface Queue {
   empty(): boolean;
   peek(): string;
   add(value: string): void;
   remove(): string;
 }
 
-class myQueue implements Queue{
+class myQueue implements Queue {
 
   queue: string[]
 
@@ -39,7 +39,7 @@ class myQueue implements Queue{
     return this.queue.length === 0;
   }
   peek(): string {
-    return this.queue[this.queue.length-1];
+    return this.queue[this.queue.length - 1];
   }
   add(value: string): void {
     this.queue.push(value);

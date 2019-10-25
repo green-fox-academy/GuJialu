@@ -28,10 +28,10 @@ class myLinkedList implements LinkedList {
 
   add(value: string, index?: number): void {
 
-    let n:myNode = new myNode(value);
+    let n: myNode = new myNode(value);
     if (this.head === null) {
       this.head = n;
-    }else{
+    } else {
       n.next = this.head;
       this.head = n;
     }
@@ -72,7 +72,7 @@ class myLinkedList implements LinkedList {
         //if removing node of index 0
         if (nPrev === null) {
           this.head = n.next;
-        }else{
+        } else {
           nPrev.next = n.next;
         }
         return;
@@ -105,7 +105,7 @@ class myLinkedList implements LinkedList {
     //if removing node of index 0
     if (nPrev === null) {
       this.head = n.next;
-    }else{
+    } else {
       nPrev.next = n.next;
     }
 
@@ -113,8 +113,8 @@ class myLinkedList implements LinkedList {
 
   size(): number {
     let n: myNode = this.head;
-    let i:number = 0;
-    while(n!==null){
+    let i: number = 0;
+    while (n !== null) {
       n = n.next;
       i++;
     }
