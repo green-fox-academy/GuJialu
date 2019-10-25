@@ -247,7 +247,7 @@ function Set() {
 }
 
 Set.prototype.add = function (e) {
-  if (this.elements.includes(e)){
+  if (this.elements.includes(e)) {
     return;
   }
   this.elements.push(e);
@@ -262,7 +262,7 @@ s.add(1);
 console.log(s.get(0));
 
 //Array.prototype.includes()
-function notInBoth(a, b){
+function notInBoth(a, b) {
   return a.filter((x) => !b.includes(x)).concat(b.filter((x) => !a.includes(x)));
 }
 
@@ -272,10 +272,10 @@ console.log(notInBoth([1, 3], [1, 2]));
 //Object.values / Object.entries
 const obj = { x: 1, y: 2, z: 3 };
 
-function highestCountWord(obj){
+function highestCountWord(obj) {
   let highestEntry = undefined;
   for (let entry of Object.entries(obj)) {
-    if(highestEntry===undefined || highestEntry[1]<entry[1]){
+    if (highestEntry === undefined || highestEntry[1] < entry[1]) {
       highestEntry = entry;
     }
   }
@@ -287,11 +287,11 @@ console.log(highestCountWord(obj));
 
 //Proxy
 const handler = {
-  get: function(targetObject, field) {
+  get: function (targetObject, field) {
     if (field === 'nextId') {
-      if(targetObject.nextId !== undefined){
+      if (targetObject.nextId !== undefined) {
         targetObject.nextId++;
-      }else{
+      } else {
         targetObject.nextId = 1;
       }
       return targetObject.nextId;
@@ -312,7 +312,7 @@ const BMIObj = {
   height: 120
 }
 
-function BMI(BMIObj){
+function BMI(BMIObj) {
   const newBMIObj = Object.assign(BMIObj);
   newBMIObj.BMI = BMIObj.mass / (BMIObj.height * BMIObj.height);
   return newBMIObj;
@@ -336,23 +336,23 @@ const vectors = [
 // [-1,0,0]
 // [6,7,8]
 
-function vectorInit(x=0, y=0, z=0){
+function vectorInit(x = 0, y = 0, z = 0) {
   return [x, y, z];
 }
 
-for(let vector of vectors){
+for (let vector of vectors) {
   console.log(vectorInit(...vector));
 }
 
 
 //Primitive fields
-const primitiveFields = { x: 1, y: true, z: [], a: '12'};
+const primitiveFields = { x: 1, y: true, z: [], a: '12' };
 
-function getPrimitiveFields(obj){
+function getPrimitiveFields(obj) {
 
   const primitiveFields = [];
-  for(let entry of Object.entries(obj)){
-    if(Object(entry[1]) !== entry[1]){
+  for (let entry of Object.entries(obj)) {
+    if (Object(entry[1]) !== entry[1]) {
       primitiveFields.push(entry[0]);
     }
   }

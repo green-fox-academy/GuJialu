@@ -12,7 +12,7 @@ export abstract class Vehicle {
   }
 }
 
-export class Helicopter extends Vehicle implements Flyable{
+export class Helicopter extends Vehicle implements Flyable {
   land(): void {
     console.log('land');
   }

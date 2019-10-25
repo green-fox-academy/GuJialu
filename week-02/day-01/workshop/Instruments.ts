@@ -4,36 +4,36 @@ export abstract class Instrument {
 
   protected name: string;
 
-  constructor(name: string){
+  constructor(name: string) {
     this.name = name;
   }
 
-  abstract play():void;
+  abstract play(): void;
 
 }
 
 export abstract class StingedInstrument extends Instrument {
-  
+
   protected numberOfStrings: number;
 
-  constructor(name: string, numberOfStrings: number){
+  constructor(name: string, numberOfStrings: number) {
     super(name);
     this.numberOfStrings = numberOfStrings;
   }
 
-  play():void{
+  play(): void {
     this.sound();
   }
-  abstract sound():void;
+  abstract sound(): void;
 
 }
 
-export class ElectricGuitar extends StingedInstrument{
-  constructor(numberOfString=6) {
+export class ElectricGuitar extends StingedInstrument {
+  constructor(numberOfString = 6) {
     super('Electric Guitar', numberOfString);
   }
 
-  sound(): void{
+  sound(): void {
     console.log('Twang');
   }
 }
@@ -41,22 +41,22 @@ export class ElectricGuitar extends StingedInstrument{
 let e: ElectricGuitar = new ElectricGuitar();
 
 
-export class BassGuitar extends StingedInstrument{
-  constructor(numberOfString=4) {
+export class BassGuitar extends StingedInstrument {
+  constructor(numberOfString = 4) {
     super('Bass Guitar', numberOfString);
   }
 
-  sound(): void{
+  sound(): void {
     console.log('Duum-duum-duum');
   }
 }
 
-export class Violin extends StingedInstrument{
-  constructor(numberOfString=4) {
+export class Violin extends StingedInstrument {
+  constructor(numberOfString = 4) {
     super('Violin', numberOfString);
   }
 
-  sound(): void{
+  sound(): void {
     console.log('Screech');
   }
 }

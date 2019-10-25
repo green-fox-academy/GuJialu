@@ -1,5 +1,5 @@
-export interface Flyable{
+export interface Flyable {
   land(): void;
   fly(): void;
-  takeOff(): void;  
+  takeOff(): void;
 }

@@ -1,3 +1,3 @@
-export interface Printable{
+export interface Printable {
   printAllFields(): void;
 }
