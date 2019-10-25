@@ -31,8 +31,3 @@ class Sudoku{
 }
 
 module.exports = Sudoku;
-
-
-const sudoku = new Sudoku('week-02/day-05/Input.txt');
-console.log(sudoku.toString());
-console.log(sudoku.isValid('1', 1, 1));
