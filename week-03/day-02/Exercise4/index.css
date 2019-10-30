@@ -1,0 +1,43 @@
+
+div.container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 675px;
+    height: 295px;
+}
+
+body{
+    margin: 0;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: purple;
+    height: 40px;
+}
+
+nav>a{
+    background-color: cyan;
+    height: 40px;
+    font-size: 1.5em;
+}
+
+main{
+    position: absolute;
+    background-color: gold;
+    height: 100vh;
+    right:200px;
+    left: 0;
+}
+
+.side{
+    position: absolute;
+    background-color: green;
+    width: 200px;
+    right: 0;
+    height: 100vh;
+}
