@@ -1,0 +1,24 @@
+
+div.container{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    width: 295px;
+    height: 600px;
+}
+
+div.green{
+    flex-basis: 25%;
+    background-color: green;
+}
+
+div.yellow{
+    flex-basis: 50%;
+    background-color: yellow;
+}
+
+div.purple{
+    flex-basis: 25%;
+    background-color: purple;
+}
