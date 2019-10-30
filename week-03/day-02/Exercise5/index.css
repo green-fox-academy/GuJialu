@@ -1,0 +1,61 @@
+
+div.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1000px;
+    margin: auto;
+    margin-top: 40px;
+}
+
+body{
+    margin: 0;
+}
+
+header{
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: lightskyblue;
+    height: 40px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+main{
+    position: relative;
+    background-color: orangered;
+    width: 480px;
+    height: 100vh;
+}
+
+aside{
+    width: 200px;
+}
+
+aside.sideLeft{
+    background-color: orange;
+}
+
+aside.sideRight{
+    background-color: purple;
+}
+
+.black{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    right: 40px;
+    bottom: 40px;
+    background-color: black;
+}
+
+footer{
+    background-color: royalblue;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+}
