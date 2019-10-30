@@ -1,0 +1,17 @@
+
+.container{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+    height: 295px;
+    padding: 0;
+    background-color: yellow;
+    
+}
+
+.item{
+    width: 40px;
+    height: 40px;
+    background-color: purple;
+    margin: 4px;
+}

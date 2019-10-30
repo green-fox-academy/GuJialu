@@ -1,0 +1,31 @@
+
+.container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    height: 295px;
+    background-color: yellow;
+}
+
+.item{
+    width: 80px;
+    height: 80px;
+    background-color: purple;
+}
+.item + .item{
+    margin: 4px;
+}
+
+div.green{
+
+    background-color: green;
+}
+
+div.yellow{
+    background-color: yellow;
+}
+
+div.purple{
+    background-color: purple;
+}
