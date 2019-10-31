@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Workshop: Delayed Click</title>
+</head>
+
+<body>
+  <button>Click me</button>
+  <p></p>
+
+  <script>
+    //Create a simple HTML document with one button.
+    //If the user clicks the button it should wait 2 seconds and it should show a text
+    //under the button: `2 seconds ellapsed`
+    let loadTime = 0;
+    let clickTime = 0;
+
+    document.querySelector('button').onclick = function () {
+      setTimeout(() => {
+        document.querySelector('p').innerText = '2 seconds ellapsed';
+      }, 2000);
+    };
+
+  </script>
+
+</body>
+
+</html>
