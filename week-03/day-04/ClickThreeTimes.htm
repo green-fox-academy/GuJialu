@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Workshop: Click Three Times</title>
+</head>
+
+<body>
+  <button>Click me</button>
+  <p></p>
+
+  <script>
+    //Create a simple HTML document with one button. \
+    //If the user clicks the button 3 times, and 5 seconds is already elapsed since
+    //the page is loaded, a text should appear under the button: \
+    //`5 seconds elapsed and clicked 3 times` \
+    //If the user starts clicking before the first 5 seconds, nothing should be
+    //printed
+    let loadTime = 0;
+    let clickTime = 0;
+    document.querySelector('body').onload = function () { loadTime = Date.now() };
+
+    document.querySelector('button').onclick = function () {
+      const timeElapsed = Date.now() - loadTime;
+      clickTime++;
+      if (timeElapsed > 5000 && clickTime >= 3) {
+        document.querySelector('p').innerText = 'text';
+      }
+    };
+
+  </script>
+
+</body>
+
+</html>
