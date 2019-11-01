@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <div>
+
+  </div>
+
+  <script>
+    const articleDiv = document.querySelector('div');
+    const request = new XMLHttpRequest();
+    request.onload = () => {
+      const resObj = JSON.parse(request.responseText);
+      for (let doc of resObj.response.docs) {
+        const article = document.createElement('article');
+        const headline = document.createElement('p');
+        headline.innerText = doc.lead_paragraph;
+        article.appendChild(headline);
+        const snippet = document.createElement('p')
+        snippet.innerText = doc.snippet;
+        article.appendChild(snippet);
+        const date = document.createElement('p');
+        date.innerText = doc.pub_date;
+        article.appendChild(date);
+        const link = document.createElement('a');
+        link.href = doc.web_url;
+        link.innerText = 'link';
+        article.appendChild(link);
+        articleDiv.appendChild(article);
+      }
+
+    }
+    request.open('GET', 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Apollo+11&page=0&api-key=u5wyJaISFPCgAumo8Ak5NuATjXQyoASG');
+    request.send();
+
+  </script>
+
+</body>
+
+</html>
