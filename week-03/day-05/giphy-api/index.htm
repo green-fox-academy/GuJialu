@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <div>
+
+  </div>
+
+  <script>
+    const imgs = document.querySelector('div');
+    function addImage() {
+      const request = new XMLHttpRequest();
+      request.onload = () => {
+        const img = document.createElement('img');
+        console.log(request.responseText);
+        const resObj = JSON.parse(request.responseText);
+        img.dataset.thumbnailSrc = resObj.data.fixed_height_small_still_url;
+        img.dataset.animaSrc = resObj.data.image_original_url;
+        img.src = img.dataset.thumbnailSrc;
+        img.onclick = function () {
+          this.src = this.dataset.animaSrc;
+        }
+        imgs.appendChild(img);
+      }
+      request.open('GET', 'https://api.giphy.com/v1/gifs/random?api_key=PK5XRSLgGBNIuymDInYp1hqQrdqxBWql&tag=&rating=G');
+      request.send();
+    }
+
+    for (let i = 0; i < 16; i++) {
+      addImage();
+    }
+
+  </script>
+
+</body>
+
+</html>
