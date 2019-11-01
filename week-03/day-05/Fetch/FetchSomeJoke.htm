@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div>
+
+    </div>
+    <button>Gimme a joke</button>
+
+    <script>
+        const jokeDiv = document.querySelector('div');
+        const addJokeButton = document.querySelector('button');
+        function fetchJoke() {
+            fetch('http://api.icndb.com/jokes/random')
+                .then((response => response.json()))
+                .then(myJson => {
+                    const joke = document.createElement('p');
+                    joke.innerText = myJson.value.joke;
+                    jokeDiv.appendChild(joke);
+                });
+
+        }
+        addJokeButton.onclick = fetchJoke;
+
+    </script>
+
+</body>
+
+</html>
