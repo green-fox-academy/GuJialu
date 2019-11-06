@@ -26,8 +26,9 @@ class NewsList extends React.Component {
   }
 
   changeCountry = (country) => {
-    this.fetchNews(country);
-    console.log(country);
+    if(country.length!==0){
+      this.fetchNews(country);
+    }
   }
 
   render() {
@@ -39,11 +40,7 @@ class NewsList extends React.Component {
       console.log(this.state.articles);
     }
 
-    let countryInput =
-      <form onSubmit={(evt) => {this.changeCountry(evt.target[0].value); evt.preventDefault();}}>
-        <input type="text" />
-        <input type="submit" value="go" />
-      </form>;
+    let countryInput = <input type="text" onChange={(evt) => {this.changeCountry(evt.target.value);} }/>
 
     return (
       <>
