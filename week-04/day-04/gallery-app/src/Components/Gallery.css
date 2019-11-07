@@ -1,0 +1,27 @@
+.arrow{
+    width: 20px;
+    height: 460px;
+    padding: 10px;
+    background-color: whitesmoke;
+}
+
+
+main{
+    display: flex;
+    justify-content: center;
+}
+
+.main-img{
+    width: 854px;
+    height: 480px;
+}
+
+.right-arrow{
+    transform: scaleX(-1);
+}
+
+.thumbnails{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}

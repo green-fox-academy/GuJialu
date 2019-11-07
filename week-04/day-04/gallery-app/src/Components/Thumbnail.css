@@ -1,0 +1,19 @@
+.thumb-nail{
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin: 5px;;
+}
+
+.thumb-nail-img{
+    width: 60px;
+    height: 60px;
+}
+
+.highlight{
+    position: absolute;
+    top: -28px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+}

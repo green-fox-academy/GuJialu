@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import highlightImg from './caret-up-solid.svg';
+import './Thumbnail.css';
 
-function Thumbnail({imageSrc, highlighting, thumbnailClick}) {
+function Thumbnail({ imageSrc, highlighting, thumbnailClick }) {
 
   return (
-    <>
-      <img src={imageSrc} alt='image' onClick={thumbnailClick} height="42" width="42"/>
-      {highlighting && <img src={highlightImg} alt='highlight' height="42" width="42"/>}
-    </>
+    <div className="thumb-nail">
+      <img className="thumb-nail-img" src={imageSrc} alt='image' onClick={thumbnailClick} />
+      {highlighting && <img className="highlight" src={highlightImg} alt='highlight' />}
+    </div>
   );
 
 }
