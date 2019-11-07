@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import imagesData from '../Data/images';
+import React, { useState } from 'react';
+import images from '../Data/images';
 import Thumbnail from './Thumbnail';
 import arrow from './arrow.svg';
 import './Gallery.css';
 
 function Gallery() {
 
-  const [images, setImages] = useState(imagesData);
   const [currImageIndex, setCurrImageIndex] = useState(0);
 
   function nextImg() {
@@ -21,7 +20,7 @@ function Gallery() {
     <>
       <main>
         <img className="arrow left-arrow" src={arrow} alt='arrow' onClick={prevImg} />
-        {<img className="main-img" src={images[currImageIndex]} alt='gallery image' />}
+        {<img className="main-img" src={images[currImageIndex]} alt='gallery' />}
         <img className="arrow right-arrow" src={arrow} alt='arrow' onClick={nextImg} />
       </main>
       <div className="thumbnails">
