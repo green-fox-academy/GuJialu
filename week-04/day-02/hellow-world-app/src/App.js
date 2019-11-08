@@ -2,10 +2,10 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
-import HelloWorld from './HellowWorld';
-import ErrorHappen from './ErrorHappen';
-import ErrorCode from './ErrorCode';
-import NotImplement from './NotImplement';
+import HelloWorld from './Components/HellowWorld';
+import ErrorHappen from './Components/ErrorHappen';
+import ErrorCode from './Components/ErrorCode';
+import NotImplement from './Components/NotImplement';
 
 function App() {
   return (
