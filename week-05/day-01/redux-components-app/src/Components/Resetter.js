@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {resetCounter} from '../redux/actionCreators'
 
-
 function Resetter({count, reset}) {
   console.log(count);
   return (
