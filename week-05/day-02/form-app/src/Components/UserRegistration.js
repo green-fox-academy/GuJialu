@@ -23,7 +23,7 @@ function UserRegistration() {
         onSubmit={(values, { setSubmitting }) => {
           console.log(values);
           setTimeout(() => {
-            setSubmitting(false);
+            //setSubmitting(false);
             console.log('dasfds');
           }, 2000);
         }}
@@ -55,12 +55,14 @@ function UserRegistration() {
               <input onChange={handleChange}
                 value={values.password}
                 name="password"
-                type="password">
+                type="password"
+                autoComplete="on">
               </input>
               {errors.password && <span>{errors.password}</span>}
             </label>
             <br />
             <button type="submit" disabled={isSubmitting}>Submit</button>
+            {console.log('onsub  '+isSubmitting)}
           </form>
         )}
       </Formik>
