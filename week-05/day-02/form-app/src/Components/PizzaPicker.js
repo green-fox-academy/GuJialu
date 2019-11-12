@@ -3,7 +3,7 @@ import useForm from 'react-hook-form';
 
 function PizzaPicker() {
 
-  const { register, handleSubmit, watch, errors } = useForm()
+  const { register, handleSubmit, errors } = useForm()
   const onSubmit = (data) => { console.log(data) }
   //console.log(watch('Addition Comment'));
 

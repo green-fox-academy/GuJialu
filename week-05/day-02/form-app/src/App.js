@@ -2,6 +2,7 @@ import React from 'react';
 import EventRegistration from './Components/EventRegistration';
 import UserRegistration from './Components/UserRegistration';
 import PizzaPicker from './Components/PizzaPicker';
+import TravelForm from './Components/TravelForm';
 import './App.css';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <EventRegistration/>
       <UserRegistration/>
       <PizzaPicker/>
+      <TravelForm/>
     </div>
   );
 }
