@@ -12,6 +12,7 @@ import AddTag from './Components/AddTag';
 import RemoveTag from './Components/RemoveTag';
 import RemoveAllTags from './Components/RemoveAllTags';
 import ComplexCounter from './Components/ComplexCounter';
+import AsyncIncrementer from './Components/AsyncIncrementer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Decreaser />
         <Setter />
         <Resetter />
+        <AsyncIncrementer />
       </div>
 
       <div className='Tag'>

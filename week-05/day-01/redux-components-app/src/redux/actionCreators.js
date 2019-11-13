@@ -5,11 +5,18 @@ export const RESET = 'reset';
 export const ADD_TAG = 'addTag';
 export const REMOVE_TAG = 'removeTag';
 export const REMOVE_ALL_TAGS = 'removeAllTags';
+export const ASYNC_INCREASE = 'asyncIncrease';
 
 export function increaseCounter() {
   return {
     type: INCREASE
   };
+}
+
+export function asyncIncrease(amount, delay) {
+  return (dispatch) => {
+    setTimeout(()=>dispatch({type: ASYNC_INCREASE, payload: amount}), delay);
+  }
 }
 
 export function decreaseCounter() {

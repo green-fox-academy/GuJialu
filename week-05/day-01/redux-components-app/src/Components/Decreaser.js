@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {increaseCounter, decreaseCounter, setCounter, resetCounter} from '../redux/actionCreators'
+import { decreaseCounter } from '../redux/actionCreators'
 
 
-function Decreaser({count, decrease}) {
+function Decreaser({ count, decrease }) {
   console.log(count);
   return (
     <>
