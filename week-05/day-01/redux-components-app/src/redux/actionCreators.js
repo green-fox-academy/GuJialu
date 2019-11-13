@@ -15,7 +15,7 @@ export function increaseCounter() {
 
 export function asyncIncrease(amount, delay) {
   return (dispatch) => {
-    setTimeout(()=>dispatch({type: ASYNC_INCREASE, payload: amount}), delay);
+    setTimeout(() => dispatch({ type: ASYNC_INCREASE, payload: amount }), delay);
   }
 }
 

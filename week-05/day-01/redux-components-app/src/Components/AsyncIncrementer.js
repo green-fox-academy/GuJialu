@@ -14,7 +14,7 @@ function AsyncIncrementer({ count, asyncIncrease }) {
       <input type="number" ref={amountInput}></input>
       <label>Delay</label>
       <input type="number" ref={delayInput}></input>
-      <button onClick={()=>asyncIncrease(parseInt(amountInput.current.value, 10), delayInput.current.value)}>Increase</button>
+      <button onClick={() => asyncIncrease(parseInt(amountInput.current.value, 10), delayInput.current.value)}>Increase</button>
     </>
   );
 }
