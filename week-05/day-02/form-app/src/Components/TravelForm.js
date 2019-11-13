@@ -3,7 +3,7 @@ import useForm from 'react-hook-form';
 
 function TravelForm() {
 
-  const { register, handleSubmit, errors } = useForm()
+  const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => {
     console.log(data);
     const alertMessage = `
