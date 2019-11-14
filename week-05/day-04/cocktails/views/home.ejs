@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Cocktails</title>
+  <link rel="stylesheet" href="static/style.css">
+</head>
+
+<body>
+  <h1>Cocktails</h1>
+
+  <%- include('partials/filter.ejs', {selected: "about"}) %>
+  <table>
+    <thead>
+      <tr>
+        <th>Cocktails</th>
+        <th>Prices</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%cocktails.map((cocktail) => {%>
+      <tr>
+        <td>
+          <p>
+            <%=cocktail.name%>
+            <%if(!cocktail.contains.includes('gin')
+                  ||!cocktail.contains.includes('vodka')
+                  ||!cocktail.contains.includes('rum')
+                  ||!cocktail.contains.includes('tequila')
+                ){%>
+              <span>(non-alcoholic)</span>
+            <%}%>
+          </p>
+          <p><%=cocktail.contains%></p>
+        </td>
+        <td>
+          <h2><%=cocktail.price%></h2>
+        </td>
+      </tr>
+      <%})%>
+    </tbody>
+  </table>
+</body>
+
+</html>
