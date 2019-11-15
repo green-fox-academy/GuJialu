@@ -127,16 +127,16 @@ app.post('/arrays', (req, res) => {
 
 });
 
-app.post('/sith', (req, res)=>{
+app.post('/sith', (req, res) => {
 
-  function reverseSentence (sentence)  {
+  function reverseSentence(sentence) {
     const words = sentence.split(' ');
-    for(let i=0; i+1<words.length; i+=2){
-      if(i===0){
+    for (let i = 0; i + 1 < words.length; i += 2) {
+      if (i === 0) {
         words[i] = words[i].substring(0, 1).toLowerCase() + words[i].substring(1);
-        words[i+1] = words[i+1].substring(0, 1).toUpperCase() + words[i+1].substring(1);
+        words[i + 1] = words[i + 1].substring(0, 1).toUpperCase() + words[i + 1].substring(1);
       }
-      [words[i], words[i+1]] = [words[i+1], words[i]];
+      [words[i], words[i + 1]] = [words[i + 1], words[i]];
       console.log(words);
     }
     words.push('emmmm');
@@ -145,7 +145,7 @@ app.post('/sith', (req, res)=>{
 
   const text = req.body.text;
 
-  if(!text || text.length===0){
+  if (!text || text.length === 0) {
     res.send({
       error: 'Feed me some text you have to, padawan young you are. Hmmm.'
     });
@@ -153,12 +153,87 @@ app.post('/sith', (req, res)=>{
   }
 
   const sentences = text.split('. ');
-  const sithText = sentences.map((x)=>reverseSentence(x)).join('. ');
+  const sithText = sentences.map((x) => reverseSentence(x)).join('. ');
 
   res.send({
     sith_text: sithText
   })
 
+});
+
+app.get('/translate', (req, res) => {
+
+  if (!req.body.text || req.body.text.length === 0) {
+    res.send({
+      error: 'I can\'t translate that!'
+    });
+    return;
+  }
+
+  let textChars = req.body.text.split('');
+  let translated = '';
+  const infix = 'uthug';
+
+  if (
+    textChars[0].toLowerCase() === 'a'
+    || textChars[0].toLowerCase() === 'e'
+    || textChars[0].toLowerCase() === 'u'
+    || textChars[0].toLowerCase() === 'i'
+    || textChars[0].toLowerCase() === 'r'
+    || textChars[0].toLowerCase() === 'o'
+  ) {
+    translated += infix;
+  }
+
+  for (let i = 0; i + 1 < textChars.length; i++) {
+
+    switch (textChars[i].toLowerCase()) {
+      case 'd':
+      case 'c':
+      case 'p':
+      case 'f':
+      case 'l':
+      case 'h':
+      case 'r':
+      case 'x':
+      case 't':
+        if (textChars[i + 1].toLowerCase() === 'r') {
+          translated += textChars[i] + textChars[i + 1] + infix;
+          i++;
+        } else {
+          translated += textChars[i] + infix;
+        }
+        break;
+      case 's':
+        if (textChars[i + 1].toLowerCase() === 't' && textChars[i + 2].toLowerCase() === 'r') {
+          translated += textChars[i] + textChars[i + 1] + textChars[i + 2] + infix;
+          i += 2;
+        }
+        break;
+      case ' ':
+        if (
+          textChars[i+1].toLowerCase() === 'a'
+          || textChars[i+1].toLowerCase() === 'e'
+          || textChars[i+1].toLowerCase() === 'u'
+          || textChars[i+1].toLowerCase() === 'i'
+          || textChars[i+1].toLowerCase() === 'r'
+          || textChars[i+1].toLowerCase() === 'o'
+        ) {
+          translated += textChars[i] + infix + textChars[i + 1];
+          i++;
+        } else {
+          translated += textChars[i];
+        }
+        break;
+      default:
+        translated += textChars[i];
+    }
+
+  }
+  res.send({
+    translated: translated,
+    lang: 'gibberish'
+  });
 });
 
 // start express app on port 8080
