@@ -60,9 +60,10 @@ app.get('/appenda/:name', (req, res) => {
 });
 
 app.post('/dountil/:action', (req, res) => {
+
   console.log(req.params);
 
-  if(!req.body.until){
+  if (!req.body.until) {
     res.send({
       error: 'Please provide a number!'
     });
@@ -88,6 +89,76 @@ app.post('/dountil/:action', (req, res) => {
   res.send({
     result: result
   });
+
+});
+
+app.post('/arrays', (req, res) => {
+  const what = req.body.what;
+  const numbers = req.body.numbers;
+
+  if (!what || !numbers) {
+    res.send({
+      error: "Please provide what to do with the numbers!"
+    });
+    return;
+  }
+
+  let result;
+  switch (what) {
+    case 'sum':
+      result = numbers.reduce((a, b) => a + b);
+      break;
+    case 'multiply':
+      result = numbers.reduce((a, b) => a * b);
+      break;
+    case 'double':
+      result = numbers.map((x) => 2 * x);
+      break;
+    default:
+      res.send({
+        error: "Please provide what to do with the numbers!"
+      });
+      return;
+  }
+
+  res.send({
+    result: result
+  });
+
+});
+
+app.post('/sith', (req, res)=>{
+
+  function reverseSentence (sentence)  {
+    const words = sentence.split(' ');
+    for(let i=0; i+1<words.length; i+=2){
+      if(i===0){
+        words[i] = words[i].substring(0, 1).toLowerCase() + words[i].substring(1);
+        words[i+1] = words[i+1].substring(0, 1).toUpperCase() + words[i+1].substring(1);
+      }
+      [words[i], words[i+1]] = [words[i+1], words[i]];
+      console.log(words);
+    }
+    words.push('emmmm');
+    return words.join(' ');
+  }
+
+  const text = req.body.text;
+
+  if(!text || text.length===0){
+    res.send({
+      error: 'Feed me some text you have to, padawan young you are. Hmmm.'
+    });
+    return;
+  }
+
+  const sentences = text.split('. ');
+  const sithText = sentences.map((x)=>reverseSentence(x)).join('. ');
+
+  res.send({
+    sith_text: sithText
+  })
+
 });
 
 // start express app on port 8080
