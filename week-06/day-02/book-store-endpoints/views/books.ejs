@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Books</title>
+</head>
+
+<body>
+  <h1>Books</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>title of book</th>
+        <th>name of author</th>
+        <th>category</th>
+        <th>name of publisher</th>
+        <th>price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%books.map((book) => {%>
+      <tr>
+        <td>
+          <p><%=book.book_name%></p>
+        </td>
+        <td>
+          <p><%=book.aut_name%></p>
+        </td>
+        <td>
+          <p><%=book.cate_descrip%></p>
+        </td>
+        <td>
+          <p><%=book.pub_name%></p>
+        </td>
+        <td>
+          <p><%=book.book_price%></p>
+        </td>
+      </tr>
+      <%})%>
+    </tbody>
+  </table>
+</body>
+
+</html>
