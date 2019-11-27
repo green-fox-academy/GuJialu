@@ -10,7 +10,7 @@ mysql.createConnection({
 }).then((val) => conn = val);
 
 async function getall() {
-  const queryStr = 'select * from possts';
+  const queryStr = 'select * from posts';
   return await conn.query(queryStr);
 }
 
@@ -19,14 +19,14 @@ async function getById(id) {
   return await conn.query(queryStr, [id]);
 }
 
-async function add(post) {
+async function add(username, title, url) {
   const queryStr = 'insert into posts (author_name, title, url) values (?, ?, ?)';
-  return await conn.query(queryStr, [post.username, post.title, post.url]);
+  return await conn.query(queryStr, [username, title, url]);
 }
 
-async function update(id, newPost) {
+async function update(id, newTitle, newUrl) {
   const queryStr = 'update posts set title=?, url=? where id=?';
-  return await conn.query(queryStr, [newPost.title, newPost.url, id]);
+  return await conn.query(queryStr, [newTitle, newUrl, id]);
 }
 
 async function remove(id) {
@@ -34,23 +34,23 @@ async function remove(id) {
   return await conn.query(queryStr, [id]);
 }
 
-async function upvote(username, postId) {
-  const queryStr = 'insert into votes (user_name, post_id, upvote) values (?, ?, true)';
+async function addVote(username, postId, isUpvote) {
+  const queryStr = 'insert into votes (user_name, post_id, upvote) values (?, ?, ?)';
+  return await conn.query(queryStr, [username, postId, isUpvote]);
+}
+
+async function updateVote(username, postId, isUpvote) {
+  const queryStr = 'update votes set upvote=? where user_name=? and post_id=?';
+  return await conn.query(queryStr, [isUpvote, username, postId]);
+}
+
+async function removeVote(username, postId) {
+  const queryStr = 'delete from votes where user_name=? and post_id=?';
   return await conn.query(queryStr, [username, postId]);
 }
 
-async function downvote(username, postId) {
-  const queryStr = 'insert into votes (user_name, post_id, upvote) values (?, ?, false)';
-  return await conn.query(queryStr, [username, postId]);
-}
-
-async function hasUpvoted(username, postId) {
-  const queryStr = 'select exists(select * from votes where user_name=? and post_id=? and upvote=true);';
-  return await conn.query(queryStr, [username, postId]);
-}
-
-async function hasDownvoted(username, postId) {
-  const queryStr = 'select exists(select * from votes where user_name=? and post_id=? and upvote=false);';
+async function getVote(username, postId) {
+  const queryStr = 'select * from votes where user_name=? and post_id=?';
   return await conn.query(queryStr, [username, postId]);
 }
 
@@ -60,8 +60,8 @@ module.exports = {
   add,
   update,
   remove,
-  upvote,
-  downvote,
-  hasUpvoted,
-  hasDownvoted
+  addVote,
+  updateVote,
+  removeVote,
+  getVote
 }
